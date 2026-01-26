@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Bài tập Products</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f6f8;
+    padding: 30px;
+}
+h1 { text-align: center; }
+h2 { margin-top: 35px; color: #2c3e50; }
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #fff;
+    margin-top: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+th, td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+th {
+    background: #34495e;
+    color: white;
+}
+tr:hover { background: #f1f1f1; }
+
+.box {
+    background: white;
+    padding: 15px 20px;
+    margin-top: 10px;
+    border-left: 5px solid #3498db;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+}
+.true { color: green; font-weight: bold; }
+.false { color: red; font-weight: bold; }
+</style>
+</head>
+
+<body>
+
+<h1>📦 QUẢN LÝ SẢN PHẨM (CÂU 1 → 10)</h1>
+
+<script>
+// ===== CÂU 1 =====
+function Product(id, name, price, quantity, category, isAvailable) {
+    this.id = id;
+    this.name = name;
+    this.price = price;
+    this.quantity = quantity;
+    this.category = category;
+    this.isAvailable = isAvailable;
+}
+
+// ===== CÂU 2 =====
+const products = [
+    new Product(1,"Iphone 16 Pro Max",30000000,5,"Phone",true),
+    new Product(2,"Samsung Galaxy S25 Ultra",28000000,10,"Phone",true),
+    new Product(3,"Xiaomi Mi 14 Pro",20000000,15,"Phone",true),
+    new Product(4,"Sony WH-1000XM5",8000000,8,"HeadPhone",true),
+    new Product(5,"Bose QuietComfort 45",7500000,12,"HeadPhone",false),
+    new Product(6,"Dell XPS 13",35000000,4,"Laptop",true),
+    new Product(7,"MacBook Pro 16",45000000,6,"Laptop",true),
+    new Product(8,"G90 Mouse",150000,12,"Accessories",true),
+    
+];
+
+// ===== HIỂN THỊ DANH SÁCH SẢN PHẨM =====
+document.write(`<h2>Câu 2: Danh sách sản phẩm</h2>`);
+document.write(`
+<table>
+<tr>
+<th>ID</th><th>Tên</th><th>Giá</th><th>Số lượng</th><th>Danh mục</th><th>Trạng thái</th>
+</tr>
+${products.map(p => `
+<tr>
+<td>${p.id}</td>
+<td>${p.name}</td>
+<td>${p.price.toLocaleString()} đ</td>
+<td>${p.quantity}</td>
+<td>${p.category}</td>
+<td class="${p.isAvailable ? 'true':'false'}">
+${p.isAvailable ? "Đang bán":"Ngừng bán"}
+</td>
+</tr>`).join("")}
+</table>
+`);
+
+// ===== CÂU 3 =====
+const productNamesAndPrices = products.map(p => ({
+    name: p.name,
+    price: p.price
+}));
+
+document.write(`<h2>Câu 3: Tên & Giá sản phẩm</h2>`);
+document.write(`<div class="box">
+<ul>
+${productNamesAndPrices.map(p =>
+    `<li>${p.name} - ${p.price.toLocaleString()} đ</li>`
+).join("")}
+</ul>
+</div>`);
+
+// ===== CÂU 4 =====
+const inStockProducts = products.filter(p => p.quantity > 0 && p.isAvailable);
+
+document.write(`<h2>Câu 4: Sản phẩm còn hàng</h2>`);
+document.write(`<div class="box">
+<ul>
+${inStockProducts.map(p => `<li>${p.name}</li>`).join("")}
+</ul>
+</div>`);
+
+// ===== CÂU 5 =====
+const priceOver30M = products.some(p => p.price > 30000000);
+
+document.write(`<h2>Câu 5: Có sản phẩm giá > 30 triệu?</h2>`);
+document.write(`<div class="box ${priceOver30M ? 'true':'false'}">
+${priceOver30M ? "CÓ" : "KHÔNG"}
+</div>`);
+
+// ===== CÂU 6 =====
+const accessoriesAvailable = products
+    .filter(p => p.category === "Accessories")
+    .every(p => p.isAvailable);
+
+document.write(`<h2>Câu 6: Tất cả Accessories đang bán?</h2>`);
+document.write(`<div class="box ${accessoriesAvailable ? 'true':'false'}">
+${accessoriesAvailable ? "ĐÚNG" : "SAI"}
+</div>`);
+
+// ===== CÂU 7 =====
+const totalInventoryValue = products.reduce(
+    (total, p) => total + p.price * p.quantity, 0
+);
+
+document.write(`<h2>Câu 7: Tổng giá trị kho</h2>`);
+document.write(`<div class="box">
+${totalInventoryValue.toLocaleString()} đ
+</div>`);
+
+// ===== CÂU 8 =====
+document.write(`<h2>Câu 8: Tên - Danh mục - Trạng thái</h2>`);
+document.write(`<div class="box"><ul>
+${products.map(p =>
+    `<li>${p.name} - ${p.category} - ${p.isAvailable ? "Đang bán":"Ngừng bán"}</li>`
+).join("")}
+</ul></div>`);
+
+// ===== CÂU 9 =====
+// ===== CÂU 9 =====
+document.write(`<h2>Câu 9: Thuộc tính sản phẩm đầu tiên</h2>`);
+document.write(`<div class="box"><ul>
+${Object.keys(products[0]).map(key =>
+    `<li>${key.toUpperCase()}: ${products[0][key]}</li>`
+).join("")}
+</ul></div>`);
+
+
+
+// ===== CÂU 10 =====
+const availableProductNames = products
+    .filter(p => p.isAvailable && p.quantity > 0)
+    .map(p => p.name);
+
+document.write(`<h2>Câu 10: Sản phẩm đang bán & còn hàng</h2>`);
+document.write(`<div class="box"><ul>
+${availableProductNames.map(name => `<li>${name}</li>`).join("")}
+</ul></div>`);
+
+</script>
+</body>
+</html>
