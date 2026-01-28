@@ -1,0 +1,106 @@
+{
+  "$schema": "./node_modules/json-server/schema.json",
+  "posts": [
+    {
+      "id": "1",
+      "title": "a title",
+      "views": 100,
+      "isDeleted": true
+    },
+    {
+      "id": "2",
+      "title": "another title",
+      "views": 200,
+      "isDeleted": true
+    },
+    {
+      "id": "3",
+      "title": "another title",
+      "views": 200,
+      "isDeleted": true
+    },
+    {
+      "id": "4",
+      "title": "chu tu",
+      "views": 900,
+      "isDeleted": true
+    },
+    {
+      "id": "5",
+      "title": "to",
+      "views": 900,
+      "isDeleted": false
+    },
+    {
+      "id": "6",
+      "title": "hahah",
+      "views": 999,
+      "isDeleted": false
+    },
+    {
+      "id": "7",
+      "title": "hehehhe",
+      "views": 999,
+      "isDeleted": false
+    },
+    {
+      "id": "8",
+      "title": "909999",
+      "views": 99,
+      "isDeleted": false
+    },
+    {
+      "id": "9",
+      "title": "99",
+      "views": 999,
+      "isDeleted": false
+    },
+    {
+      "id": "10",
+      "title": "",
+      "views": "",
+      "isDeleted": false
+    },
+    {
+      "id": "11",
+      "title": "",
+      "views": "",
+      "isDeleted": false
+    },
+    {
+      "id": "12",
+      "title": "",
+      "views": "",
+      "isDeleted": false
+    },
+    {
+      "id": "13",
+      "title": "1233123",
+      "views": "123",
+      "isDeleted": false
+    }
+  ],
+  "comments": [
+    {
+      "id": "1",
+      "postId": "1",
+      "content": "a comment about post 1",
+      "isDeleted": true
+    },
+    {
+      "id": "2",
+      "postId": "1",
+      "content": "another comment about post 1",
+      "isDeleted": true
+    },
+    {
+      "id": "3",
+      "postId": "12",
+      "content": "thiếu dữ liệu Tittle,Views",
+      "isDeleted": false
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
